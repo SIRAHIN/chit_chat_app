@@ -1,7 +1,5 @@
-import 'package:chat_app_using_firebase/firebase_options.dart';
 import 'package:chat_app_using_firebase/routes/routes_name.dart';
 import 'package:chat_app_using_firebase/routes/routes_screen.dart';
-import 'package:chat_app_using_firebase/services/auth_state.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

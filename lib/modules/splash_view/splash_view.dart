@@ -1,4 +1,3 @@
-import 'package:chat_app_using_firebase/modules/login_view/view/login_view.dart';
 import 'package:chat_app_using_firebase/routes/routes_name.dart';
 import 'package:chat_app_using_firebase/style/style.dart';
 import 'package:firebase_auth/firebase_auth.dart';

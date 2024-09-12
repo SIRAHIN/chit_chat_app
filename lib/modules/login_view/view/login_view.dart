@@ -67,7 +67,7 @@ class LoginView extends GetView<LoginAuthController> {
               child: MaterialButton(
                 color: Colors.deepPurple,
                 child: Obx(
-                 () => controller.isLoading.value == true ? Center(child: CircularProgressIndicator()) :
+                 () => controller.isLoading.value == true ? const Center(child: CircularProgressIndicator()) :
                    Text(
                     'Login',
                     style: customTextStyle(fontColor: Colors.white, fontsize: 18),

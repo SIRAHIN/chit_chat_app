@@ -1,3 +1,4 @@
+import 'package:chat_app_using_firebase/modules/home_view/binding/home_bindings.dart';
 import 'package:chat_app_using_firebase/modules/home_view/view/home_view.dart';
 import 'package:chat_app_using_firebase/modules/login_view/bindigns/login_binding.dart';
 import 'package:chat_app_using_firebase/modules/login_view/view/login_view.dart';
@@ -28,5 +29,6 @@ List<GetPage<dynamic>>? routes = [
    GetPage(
     name: RoutesName.homeView,
     page: () => const HomeView(),
+    binding: HomeBindings()
   ),
 ];

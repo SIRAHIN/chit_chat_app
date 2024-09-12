@@ -14,24 +14,21 @@ class my_txt_field extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-      child: TextField(
-       obscureText: isobscureText,
-       controller: controller, 
-       decoration: InputDecoration(
-       
-       hintText: hintText,
-       filled: true,
-       fillColor: Colors.white,
-       enabledBorder: OutlineInputBorder(
-        
-       ),
-       focusedBorder: OutlineInputBorder(
-       
-       )
-       ),
-      ),
+    return TextField(
+     obscureText: isobscureText,
+     controller: controller, 
+     decoration: InputDecoration(
+     contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+     hintText: hintText,
+     filled: true,
+     fillColor: Colors.white,
+     enabledBorder: const OutlineInputBorder(
+      
+     ),
+     focusedBorder: const OutlineInputBorder(
+     
+     )
+     ),
     );
   }
 }
