@@ -47,8 +47,8 @@ void handleSendImage(ImageSource source) async {
 
  // Upload Image Func //
  Future<String?> uploadImage(ImageSource source) async {
-  final ImagePicker _picker = ImagePicker();
-  final XFile? pickedFile = await _picker.pickImage(source: source);
+  final ImagePicker picker = ImagePicker();
+  final XFile? pickedFile = await picker.pickImage(source: source);
 
   if (pickedFile == null) return null;
 
@@ -63,6 +63,15 @@ void handleSendImage(ImageSource source) async {
     return null;
   }
 }
+
+
+ deleteMessage (String docId) async {
+ bool isDelete =   await dataServices.deleteMessage(docId);
+ return isDelete;
+}
+
+
+ 
 
 
 

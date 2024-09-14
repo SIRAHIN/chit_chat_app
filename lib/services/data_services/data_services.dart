@@ -27,6 +27,12 @@ class DataServices {
     });
   }
 
+   //delete
+ Future<bool>  deleteMessage (String docId,) async{
+   await messages.doc(docId).delete();
+   return true;
+  }
+
   // Get all Message //
   Stream<QuerySnapshot<Object?>> get_messages() {
     final messageStream =
@@ -34,3 +40,24 @@ class DataServices {
     return messageStream;
   }
 }
+
+
+/// ------------- Checking OwnserShip For Query ------------- ///
+// Future<bool> deleteMessage(String docID) async {
+//   try {
+//     // Fetch the message document to check ownership
+//     DocumentSnapshot messageDoc = await messages.doc(docID).get();
+//     Map<String, dynamic> messageData = messageDoc.data() as Map<String, dynamic>;
+
+//     // Check if the current user is the owner of the message
+//     if (messageData['user-email'] == auth.currentUser!.email) {
+//       await messages.doc(docID).delete();
+//       return true; // Return true if the deletion is successful
+//     } else {
+//       return false; // Return false if the user is not authorized
+//     }
+//   } catch (e) {
+//     print("Error deleting message: $e");
+//     return false; // Return false if there was an error
+//   }
+// }

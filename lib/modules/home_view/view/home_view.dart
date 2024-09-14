@@ -16,12 +16,13 @@ class HomeView extends GetView<HomeViewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarOpacity: 0.8,
         toolbarHeight: 40,
         elevation: 0,
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: const Text(
-          'Chit - Chat',
+          'Chit - Chat - Room',
         ),
         actions: [
           IconButton(
@@ -30,12 +31,15 @@ class HomeView extends GetView<HomeViewController> {
               await service.signOut();
               Get.offAllNamed(RoutesName.loginView);
             },
-            icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket),
+            icon: const FaIcon(
+              FontAwesomeIcons.arrowRightFromBracket,
+              size: 16,
+            ),
           ),
         ],
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.cover,
                 image: NetworkImage(
@@ -76,29 +80,65 @@ class HomeView extends GetView<HomeViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: imageUrl == null
-                                  ? Container(
-                                      decoration: BoxDecoration(
-                                          color: isMyMessage == true
-                                              ? Colors.deepPurple
-                                              : Colors.green,
-                                          borderRadius: isMyMessage == true
-                                              ? const BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  topRight: Radius.circular(10))
-                                              : const BorderRadius.only(
-                                                  bottomRight:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  topRight: Radius.circular(10))),
-                                      padding: const EdgeInsets.all(10),
-                                      //color: Colors.deepPurple,
-                                      child: Text(
-                                        '${featchMessages['message']}',
-                                        style: customTextStyle(
-                                            fontColor: Colors.white),
-                                      ))
+                                  ? InkWell(
+                                      onLongPress: () {
+                                        // Only show the delete option if the message is from the current user
+                                        if (isMyMessage) {
+                                          Get.defaultDialog(
+                                            onConfirm: () async {
+                                              // Perform the delete operation
+                                              controller.deleteMessage(DocID);
+
+                                              Get.back();
+                                            },
+                                            title: 'Delete Message',
+                                            middleText:
+                                                'Are You Sure?',
+                                            textCancel: 'Cancel',
+                                            textConfirm: 'Yes',
+                                            confirmTextColor: Colors.white,
+                                            onCancel: () {
+                                              // Optional: Handle cancel action if needed
+                                              Get.back();
+                                            },
+                                          );
+                                        } else {
+                                          Get.snackbar(
+                                            'Error',
+                                            'You cannot delete someone else\'s message.',
+                                            colorText: Colors.white,
+                                            backgroundColor: Colors.red,
+                                          );
+                                        }
+                                      },
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                              color: isMyMessage == true
+                                                  ? Colors.deepPurple
+                                                  : Colors.green,
+                                              borderRadius: isMyMessage == true
+                                                  ? const BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(10),
+                                                      topLeft:
+                                                          Radius.circular(10),
+                                                      topRight:
+                                                          Radius.circular(10))
+                                                  : const BorderRadius.only(
+                                                      bottomRight:
+                                                          Radius.circular(10),
+                                                      topLeft:
+                                                          Radius.circular(10),
+                                                      topRight:
+                                                          Radius.circular(10))),
+                                          padding: const EdgeInsets.all(10),
+                                          //color: Colors.deepPurple,
+                                          child: Text(
+                                            '${featchMessages['message']}',
+                                            style: customTextStyle(
+                                                fontColor: Colors.white),
+                                          )),
+                                    )
                                   : Container(
                                       height: 230,
                                       width: 230,
