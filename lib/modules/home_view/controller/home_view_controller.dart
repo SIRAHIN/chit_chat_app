@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:chat_app_using_firebase/services/data_services/data_services.dart';
+import 'package:chat_app_using_firebase/services/notification_services/notification_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -17,6 +18,16 @@ class HomeViewController  extends GetxController{
  FirebaseAuth auth = FirebaseAuth.instance;
 
 
+ 
+  // @override
+  // onInit(){
+  //   NotificationServices notiService = NotificationServices();
+  //   notiService.requestUserPermission();
+  //   super.onInit();
+  
+  
+  // }
+
   Stream<QuerySnapshot<Object?>> getAllMessage () {
     return dataServices.get_messages(); 
  }
@@ -32,8 +43,6 @@ class HomeViewController  extends GetxController{
   // Send the inital holding message asynchronously //
   await dataServices.sendMessage(message);
 }
-
-
 
 
 // Handle Image func //
@@ -63,6 +72,7 @@ void handleSendImage(ImageSource source) async {
     return null;
   }
 }
+
 
 
  deleteMessage (String docId) async {

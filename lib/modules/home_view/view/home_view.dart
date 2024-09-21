@@ -92,8 +92,7 @@ class HomeView extends GetView<HomeViewController> {
                                               Get.back();
                                             },
                                             title: 'Delete Message',
-                                            middleText:
-                                                'Are You Sure?',
+                                            middleText: 'Are You Sure?',
                                             textCancel: 'Cancel',
                                             textConfirm: 'Yes',
                                             confirmTextColor: Colors.white,
